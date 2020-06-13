@@ -1,0 +1,104 @@
+*{
+    margin:0px;
+    padding:0px;
+    font-family: Bahnschrift;
+}
+#app-name{
+    float: right;
+	background: linear-gradient(to right, white 0%, skyblue 100%);
+	background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: Freehand521 BT;
+}
+.Container{
+    background-color: rgb(76, 171, 209);
+    height: 50px;
+    margin-bottom: 40px;
+    width: 100%;
+}
+.top-container{
+    margin: px 0px;
+}
+.Container h3{
+    padding: 15px;
+    color: white;
+}
+#white{
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+}
+.top-one{
+    float: left;
+}
+.top-two{
+    text-align: right;
+}
+.trendmenu{
+    cursor: pointer;
+}
+.sidepanel  {
+    width: 0px;
+    position: fixed;
+    z-index: 1;
+    height: 180px;
+    top: 0;
+    right: 0;
+    background-color: skyblue;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .sidepanel .trendmenu {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidepanel .trendmenu:hover {
+    color: blue;
+  }
+
+  .sidepanel .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    width:10px;
+    font-size: 36px;
+  }
+  
+  .openbtn {
+    font-size: 34px;
+    cursor: pointer;
+    background-color:white;
+    color:skyblue;
+    padding: 1px 1px;
+    border: none;
+    width: 60px;
+  }
+  @media (max-width:600px)
+  {
+    .openbtn {
+        font-size: 40px;
+        cursor: pointer;
+        background-color:white;
+        color:blue;
+        padding-top: 2px;
+        border: none;
+        width: 50px;
+      }
+  }
+  .openbtn:hover {
+    background-color:skyblue;
+    color: white;
+  }
+  .fas, .far{
+      margin-right: 20px;
+  }
+  .fa-user-plus{
+      margin-right: 15px;
+  }

@@ -1,0 +1,79 @@
+*{
+    margin:0px;
+    padding:0px;
+    font-family: Bahnschrift;
+}
+#write{
+        background-color: skyblue;
+        border: none;
+        color: white;
+        padding: 8px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        background-color: white; 
+        color: skyblue; 
+        border: 2px solid skyblue;
+        border-radius: 50px;
+        margin-left: 300px;
+}
+.add{
+    float:right;
+    width: 80px;
+    background-color:white;
+    height: 25px;
+    border: 1px solid gray;
+}
+#post{
+        background-color: skyblue;
+        border: none;
+        color: white;
+        padding: 22px 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        background-color: white; 
+        color: skyblue; 
+        border: 2px solid skyblue;
+        border-radius: 50px;
+        margin-top: 30px;
+        margin-left: 1020px;
+        margin-bottom: 20px;
+}
+#post:hover,#write:hover{
+    background-color: skyblue;
+    color: white;
+}
+#login {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: skyblue;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 5px;
+    width: 200px;
+    cursor: pointer;
+    margin-left: 50px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  #newSignup{
+      color: red;
+  }
+  @media (max-width: 600px)
+  {
+    #login{
+        margin-left: 10px;
+    }
+    #write{
+        margin-left: 240px;
+    }
+  }

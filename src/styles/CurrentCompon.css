@@ -1,0 +1,36 @@
+*{
+    margin:0px;
+    padding:0px;
+    font-family: Bahnschrift;
+}
+#time-thought{
+    font-size: 10px;
+    font-weight: 100;
+}
+#date-thought{
+    font-size: 10px;
+    font-weight: 100;
+    float: right;
+}
+#thoughts{
+    font-weight: 200;
+    cursor: pointer;
+    margin: auto;
+}
+.indiv-Container{
+    width: 500px;
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgb(214, 212, 212);
+    margin-left: 20px;
+}
+#thoughts{
+    margin-top: 10px;
+}
+@media (max-width: 600px)
+{
+    .indiv-Container{
+        width: 350px;
+        margin-left: 5px;
+    }
+}
