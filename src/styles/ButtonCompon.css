@@ -64,7 +64,22 @@
     margin-left: 50px;
     margin-top: 15px;
     margin-bottom: 15px;
-  }
+}
+.otp {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: skyblue;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 16px;
+    padding: 5px;
+    width: 100px;
+    cursor: pointer;
+    margin-left: 90px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
   #newSignup{
       color: red;
   }

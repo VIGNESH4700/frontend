@@ -15,6 +15,13 @@ export default class PostComponent extends React.Component
             Thought : ''
         }
     }
+
+    componentWillMount(){
+        if(this.props.match.params.tag != ' '){
+            this.setState({Tag:this.props.match.params.tag});
+        }
+    }
+
     updateTag(newname){
         this.setState({Tag:newname});
     }

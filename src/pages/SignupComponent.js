@@ -21,7 +21,7 @@ export default class SignupComponent extends React.Component
         }
     }
     componentWillMount(){
-        axios.get('https://backendtrends.herokuapp.com/details/')
+        axios.get('http://localhost:5000/details/')
         .then(response => {
             this.setState({existlist:response.data});
         })
@@ -31,11 +31,11 @@ export default class SignupComponent extends React.Component
     }
     updateUsername(newname){
         this.setState({username:newname});
-            
         for(let data of this.state.existlist)
         {
-            if(data.username==newname){
-                this.setState({usercheck:"user exists!"});                    
+            if(data.username === newname){
+                this.setState({usercheck:"user exists!"});
+                break;                    
             }
             else{
                 this.setState({usercheck:''});

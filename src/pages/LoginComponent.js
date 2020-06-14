@@ -14,7 +14,12 @@ class LoginComponent extends React.Component
         super();
         this.state = {
             username : '',
-            password : ''
+            password : '',
+            email : '',
+            otp : '',
+            recvotp : '',
+            update : '',
+            confirm : ''        
         }
     }
 
@@ -23,6 +28,7 @@ class LoginComponent extends React.Component
     }
     componentDidMount(){
         disableBrowserBackButton();
+        this.toggleForgot();
     }
 
     updateUsername(newname){
@@ -30,6 +36,26 @@ class LoginComponent extends React.Component
     }
     updatePassword(newname){
         this.setState({password:newname});
+    }
+    updateEmail(newname){
+        this.setState({email:newname});
+    }
+    updateOTP(newname){
+        this.setState({otp:newname});
+
+        if(this.state.recvotp == newname)
+        {
+            var y = document.getElementById("hide-otp");
+            y.style.display = "none";
+            var z = document.getElementById("hide-pass");
+            z.style.display = "block";
+        }
+    }
+    updateSecurityCode(newname){
+        this.setState({update:newname});
+    }
+    updateConfirmCode(newname){
+        this.setState({confirm:newname});
     }
 
 
@@ -56,12 +82,61 @@ class LoginComponent extends React.Component
             return;
         })  
     }
+    sendOTP = () => {
+        var x = document.getElementById("hide-forgot");
+        var y = document.getElementById("hide-otp");
+        axios.post(
+            'http://localhost:5000/details/send',
+            { 
+              email: this.state.email
+            },
+            { headers: { 'Content-Type': 'application/json' } }
+          ).then(res => this.setState({recvotp : res.data}))
+           .catch(err => alert("please check your email or may be network error try again!"))
+           .then( x.style.display = "none" )
+           .then( y.style.display = "block" )
+    }
+    modifyPassword = () => {
+        var y = document.getElementById("hide-pass");
+        if(this.state.update == this.state.confirm){
+            axios.post(
+                'http://localhost:5000/details/modify/'+this.state.email,
+                { 
+                  password: this.state.update
+                },
+                { headers: { 'Content-Type': 'application/json' } }
+              ).then(y.style.display =  "none")
+               .catch(err => alert("Network error or Server error"))
+        }
+        else{
+            alert("passwords doesn't match");
+        }
+    }
     togglePassword(){
         var value = document.getElementById("password");
         if(value.type === "password") {
             value.type = "text";
         } else {
             value.type = "password";
+        }
+    }
+    togglePassCode(){
+        var x = document.getElementById("modify");
+        var y = document.getElementById("confirm");
+        if(x.type === "password") {
+            x.type = "text";
+            y.type = "text";
+        } else {
+            x.type = "password";
+            y.type = "password";
+        }
+    }       
+    toggleForgot = () => {
+        var x = document.getElementById("hide-forgot");
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
         }
     }
 
@@ -81,7 +156,20 @@ class LoginComponent extends React.Component
                                 <label  class="label">Password</label>
                                 <InputComponent type="password" placeholder="password" className="details" id="password" value={this.state.password} onChange={(event) => this.updatePassword(event.target.value)}></InputComponent>
                                 <h4><input type="checkbox" onClick={() => this.togglePassword()}/> show password</h4>
-                                <a href="#" id="forgot">Forgot Password?</a>
+                                <a id="forgot" onClick={this.toggleForgot}>Forgot Password?</a>
+                                <div id="hide-forgot">
+                                    <InputComponent type="text" placeholder="email" className="details" value={this.state.email} onChange={(event) => this.updateEmail(event.target.value)}></InputComponent>
+                                    <ButtonComponent type="button" value="Send OTP" className="otp" onClick = {this.sendOTP}></ButtonComponent>
+                                </div>
+                                <div id="hide-otp">
+                                <InputComponent type="text" placeholder="Enter your OTP" className="details" value={this.state.otp} onChange={(event) => this.updateOTP(event.target.value)}></InputComponent>
+                                </div>
+                                <div id="hide-pass">
+                                    <InputComponent type="password" id="modify" placeholder="Update your password" className="details" value={this.state.update} onChange={(event) => this.updateSecurityCode(event.target.value)}></InputComponent>
+                                    <InputComponent type="password" id="confirm" placeholder="Confirm your password" className="details" value={this.state.confirm} onChange={(event) => this.updateConfirmCode(event.target.value)}></InputComponent>
+                                    <h4><input type="checkbox" onClick={() => this.togglePassCode()}/> show password</h4>
+                                    <ButtonComponent type="button" value="Update" className="otp" onClick = {this.modifyPassword}></ButtonComponent>
+                                </div>
                                 <ButtonComponent type="button" value="Login" id="login" onClick = {this.redirectToHome}></ButtonComponent>                         
                             </form>
                         </div>
