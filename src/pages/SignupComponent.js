@@ -21,7 +21,7 @@ export default class SignupComponent extends React.Component
         }
     }
     componentWillMount(){
-        axios.get('http://localhost:5000/details/')
+        axios.get('https://backendtrends.herokuapp.com/details/')
         .then(response => {
             this.setState({existlist:response.data});
         })

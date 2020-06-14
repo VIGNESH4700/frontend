@@ -92,15 +92,15 @@ class LoginComponent extends React.Component
             },
             { headers: { 'Content-Type': 'application/json' } }
           ).then(res => this.setState({recvotp : res.data}))
-           .catch(err => alert("please check your email or may be network error try again!"))
            .then( x.style.display = "none" )
            .then( y.style.display = "block" )
+           .catch(err => alert("please check your email or may be network error try again!"))
     }
     modifyPassword = () => {
         var y = document.getElementById("hide-pass");
         if(this.state.update == this.state.confirm){
             axios.post(
-                'http://localhost:5000/details/modify/'+this.state.email,
+                'https://backendtrends.herokuapp.com/details/modify/'+this.state.email,
                 { 
                   password: this.state.update
                 },
