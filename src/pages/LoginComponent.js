@@ -86,7 +86,7 @@ class LoginComponent extends React.Component
         var x = document.getElementById("hide-forgot");
         var y = document.getElementById("hide-otp");
         axios.post(
-            'http://localhost:5000/details/send',
+            'https://backendtrends.herokuapp.com/details/send',
             { 
               email: this.state.email
             },
