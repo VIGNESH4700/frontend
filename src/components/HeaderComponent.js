@@ -42,7 +42,7 @@ class HeaderComponent extends React.Component{
             if(this.props.match.params.tag == undefined || this.props.match.params.tag == "undefined")
                 this.props.history.push('/post/'+this.props.match.params.username+"/ ");
             else
-                this.props.history.push('/post/'+this.props.match.params.username+"/"+this.props.match.parms.tag);
+                this.props.history.push('/post/'+this.props.match.params.username+"/"+this.props.match.params.tag);
         }
     }
     redirectToProfile()
