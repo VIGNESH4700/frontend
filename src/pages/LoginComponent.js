@@ -69,7 +69,7 @@ class LoginComponent extends React.Component
                 if(data.username==this.state.username){
                     if(data.password==this.state.password){
                         axios.post(
-                            'https://backendtrends.heroukuapp.com/details/status/'+this.state.username,
+                            'https://backendtrends.herokuapp.com/details/status/'+this.state.username,
                             { 
                               login: "true"
                             },
