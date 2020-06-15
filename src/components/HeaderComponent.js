@@ -1,5 +1,4 @@
-import React from 'react';
-import axios from 'axios';
+import React from 'react'
 import logo from '../Resources/images/logo_two.png';
 import '../styles/HeaderCompon.css';
 import { BrowserRouter, Route, NavLink, withRouter } from "react-router-dom";
@@ -11,8 +10,7 @@ class HeaderComponent extends React.Component{
 
         this.state = {
             user : ' ',
-            status : ' ',
-            login : ''
+            status : ' '
         }
     }
     componentDidMount(){
@@ -20,8 +18,6 @@ class HeaderComponent extends React.Component{
             if(this.props.match.params.username != "undefined"){
                 this.setState({user: this.props.match.params.username})
                 this.setState({status: "Logout"})
-                axios.get('https://backendtrends.heroukuapp.com/details/finduser/'+this.props.match.params.username)
-                    .then(response => this.setState({login : response.data.login}))
             }
             else{
                 this.setState({user: "Profile"})
@@ -43,23 +39,10 @@ class HeaderComponent extends React.Component{
                 this.props.history.push('/login')
         }
         else{
-<<<<<<< HEAD
-            if(this.state.login === "true"){
-                alert(this.state.login)
-                if(this.props.match.params.tag == undefined || this.props.match.params.tag == "undefined")
-                    this.props.history.push('/post/'+this.props.match.params.username+"/ ");
-                else
-                    this.props.history.push('/post/'+this.props.match.params.username+"/"+this.props.match.params.tag);
-            }
-            else{
-                this.props.history.push('/login')
-            }
-=======
             if(this.props.match.params.tag == undefined || this.props.match.params.tag == "undefined")
                 this.props.history.push('/post/'+this.props.match.params.username+"/ ");
             else
                 this.props.history.push('/post/'+this.props.match.params.username+"/"+this.props.match.params.tag);
->>>>>>> fdc1705bd876286f06bdc60f3a22659b2ff459de
         }
     }
     redirectToProfile()
@@ -73,19 +56,7 @@ class HeaderComponent extends React.Component{
     }
     redirectToLogin()
     {
-        if(this.state.login === "true"){
-            axios.post(
-                'https://backendtrends.heroukuapp.com/details/status/'+this.props.match.params.username,
-                { 
-                  login: "false"
-                },
-                { headers: { 'Content-Type': 'application/json' } }
-              ).then(res => this.props.history.push('/login'))
-               .catch(err => alert("Network error or Server error"))
-        }
-        else{
-            this.props.history.push('/login')
-        }
+        this.props.history.push('/login')
     }
     openNav() {
         document.getElementById("mySidepanel").style.width = "300px";

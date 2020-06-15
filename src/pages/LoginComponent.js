@@ -68,15 +68,7 @@ class LoginComponent extends React.Component
             {
                 if(data.username==this.state.username){
                     if(data.password==this.state.password){
-                        axios.post(
-                            'https://backendtrends.heroukuapp.com/details/status/'+this.state.username,
-                            { 
-                              login: "true"
-                            },
-                            { headers: { 'Content-Type': 'application/json' } }
-                          ).then(res => this.props.history.replace("/user/"+this.state.username))
-                           .catch(err => alert("Network error or Server error"))
-
+                        this.props.history.replace("/user/"+this.state.username);
                         return;
                     }
                     else{
