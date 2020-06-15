@@ -33,6 +33,19 @@ export default class CurrentComponent extends React.Component
             }
             return arrayofCards;
     }
+    redirectToPost()
+    {
+        if(this.props.match.params.username == undefined || this.props.match.params.username == "undefined"){
+                this.props.history.push('/login')
+        }
+        else{
+            if(this.props.match.params.tag == undefined || this.props.match.params.tag == "undefined")
+                this.props.history.push('/post/'+this.props.match.params.username+"/ ");
+            else
+                this.props.history.push('/post/'+this.props.match.params.username+"/"+this.props.match.params.tag);
+        }
+    }
+
     render()
     {
         if(this.state.isloading == '1')
@@ -41,7 +54,7 @@ export default class CurrentComponent extends React.Component
                     <div>
                         <HeaderComponent></HeaderComponent>
                         <div className = "currentCont">
-                        <h1 id="thoughtheading">{this.props.match.params.tag}</h1>
+                        <h1 id="thoughtheading" onClick={() => {this.redirectToPost()}}>{this.props.match.params.tag}</h1>
                                 <div class="loader"></div>
                         </div>
                     </div>
@@ -53,7 +66,7 @@ export default class CurrentComponent extends React.Component
                     <div>
                         <HeaderComponent></HeaderComponent>
                         <div className = "currentCont">
-                        <h1 id="thoughtheading">{this.props.match.params.tag}</h1>
+                        <h1 id="thoughtheading" onClick={() => {this.redirectToPost()}}>{this.props.match.params.tag}</h1>
                                 {this.printThoughts()}
                         </div>
                     </div>

@@ -17,7 +17,8 @@ export default class SignupComponent extends React.Component
             about : '',
             password : '',
             confirmPassword : '',
-            usercheck : ''
+            usercheck : '',
+            passcheck : ''
         }
     }
     componentWillMount(){
@@ -31,6 +32,10 @@ export default class SignupComponent extends React.Component
     }
     updateUsername(newname){
         this.setState({username:newname});
+        if(newname.length < 7){
+            this.setState({usercheck:"username should be atleast 7 characters!"});
+            return;
+        }
         for(let data of this.state.existlist)
         {
             if(data.username === newname){
@@ -47,6 +52,13 @@ export default class SignupComponent extends React.Component
     }
     updatePassword(newname){
         this.setState({password:newname});
+        if(newname.length < 7){
+            this.setState({passcheck:"password should be atleast 7 characters!"});
+            return;
+        }
+        else{
+            this.setState({passcheck:''});
+        }
     }
     updateConfirmPassword(newname){
         this.setState({confirmPassword:newname});
@@ -65,7 +77,7 @@ export default class SignupComponent extends React.Component
                 { headers: { 'Content-Type': 'application/json' } }
               ).then(res => alert("signed up successfully! :)"))
                .then(res =>this.props.history.push("/login"))
-               .catch(err => alert("please check your username or may be network error try again!"))   
+               .catch(err => alert("Invalid user credentials or may be network error try again!"))   
         }
         else{
             alert("passwords does not match!");
@@ -101,6 +113,7 @@ export default class SignupComponent extends React.Component
                                 <label class="label">About</label>
                                 <textarea className="middle" id="about" placeholder="write something about you!" value={this.state.about} onChange={(event) => this.updateAbout(event.target.value)}></textarea> 
                                 <label  class="label">Password</label>
+                                <h6 id="warninguserexists">{this.state.passcheck}</h6>
                                 <InputComponent type="password" placeholder="password" id="password" className="details" value={this.state.password} onChange={(event) => this.updatePassword(event.target.value)}></InputComponent>
                                 <label  class="label">Confirm Password</label>
                                 <InputComponent type="password" placeholder="confirm password" id="con-password" className="details" value={this.state.confirmPassword} onChange={(event) => this.updateConfirmPassword(event.target.value)}></InputComponent>

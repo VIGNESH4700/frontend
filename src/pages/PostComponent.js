@@ -12,7 +12,8 @@ export default class PostComponent extends React.Component
         super();
         this.state = {
             Tag : '',
-            Thought : ''
+            Thought : '',
+            existlist : []
         }
     }
 
@@ -20,8 +21,14 @@ export default class PostComponent extends React.Component
         if(this.props.match.params.tag != ' '){
             this.setState({Tag:this.props.match.params.tag});
         }
+        try{
+            let username =  window.atob(window.atob(this.props.match.params.username));
+        }
+        catch(err){
+            alert("Some issues in your login please login again!");
+            this.props.history.push("/login");
+        }
     }
-
     updateTag(newname){
         this.setState({Tag:newname});
     }
@@ -37,7 +44,7 @@ export default class PostComponent extends React.Component
             'https://backendtrends.herokuapp.com/exercises/add',
             {   tag: this.state.Tag,
                 thought: this.state.Thought,
-                username: this.props.match.params.username,
+                username: window.atob(window.atob(this.props.match.params.username)),
                 time: time
             }, 
             { headers: { 'Content-Type': 'application/json' } }

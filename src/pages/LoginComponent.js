@@ -68,7 +68,8 @@ class LoginComponent extends React.Component
             {
                 if(data.username==this.state.username){
                     if(data.password==this.state.password){
-                        this.props.history.replace("/user/"+this.state.username);
+                        let encrypted = window.btoa(this.state.username);
+                        this.props.history.replace("/user/"+window.btoa(encrypted));
                         return;
                     }
                     else{

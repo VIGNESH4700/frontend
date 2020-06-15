@@ -9,23 +9,20 @@ class HeaderComponent extends React.Component{
         super();
 
         this.state = {
-            user : ' ',
+            user : 'Profile',
             status : ' '
         }
     }
     componentDidMount(){
         if(this.props.match.params.username != undefined){
             if(this.props.match.params.username != "undefined"){
-                this.setState({user: this.props.match.params.username})
                 this.setState({status: "Logout"})
             }
             else{
-                this.setState({user: "Profile"})
                 this.setState({status: "Login"})
             }
         }
         else{
-            this.setState({user: "Profile"})
             this.setState({status: "Login"})
         }
     }

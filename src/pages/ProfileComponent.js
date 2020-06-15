@@ -17,6 +17,15 @@ class ProfileComponent extends React.Component
             password : ''
         }
     }
+    componentWillMount(){
+        try{
+            let username =  window.atob(window.atob(this.props.match.params.username));
+        }
+        catch(err){
+            alert("Some issues in your login please login again!");
+            this.props.history.push("/login");
+        }
+    }
     componentDidMount()
     {
         axios.get('https://backendtrends.herokuapp.com/details/')
@@ -24,7 +33,7 @@ class ProfileComponent extends React.Component
             this.setState({details:response.data})
             for(let detail of this.state.details)
             {
-                if(detail.username == this.props.match.params.username)
+                if(detail.username == window.atob(window.atob(this.props.match.params.username)))
                 {
                     this.setState({email: detail.email, username: detail.username, about: detail.about})
                 }
