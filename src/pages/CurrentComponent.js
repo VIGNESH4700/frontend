@@ -3,7 +3,6 @@ import axios from 'axios';
 import CurrentCompon from '../components/CurrentComponent';
 import HeaderComponent from '../components/HeaderComponent';
 import '../styles/TrendCompon.css';
-import { NavLink } from 'react-router-dom';
 
 export default class CurrentComponent extends React.Component
 {
@@ -12,8 +11,13 @@ export default class CurrentComponent extends React.Component
         super();
         this.state = {
                 thoughts : [],
-                isloading : '1'
+                isloading : '1',
+                login : ''
         }
+    }
+    componentWillMount(){
+        axios.get('https://backendtrends.heroukuapp.com/details/finduser/'+this.props.match.params.username)
+            .then(response => this.setState({login : response.data.login}))
     }
     componentDidMount()
     {
@@ -22,6 +26,23 @@ export default class CurrentComponent extends React.Component
             this.setState({thoughts:response.data})
             this.setState({isloading:'0'})
         })
+    }
+    redirectToPost()
+    {
+        if(this.props.match.params.username == undefined || this.props.match.params.username == "undefined"){
+                this.props.history.push('/login')
+        }
+        else{
+            if(this.state.login === "true"){
+                if(this.props.match.params.tag == undefined || this.props.match.params.tag == "undefined")
+                    this.props.history.push('/post/'+this.props.match.params.username+"/ ");
+                else
+                    this.props.history.push('/post/'+this.props.match.params.username+"/"+this.props.match.params.tag);
+            }
+            else{
+                this.props.history.push('/login')
+            }
+        }
     }
     printThoughts()
     {
@@ -42,7 +63,7 @@ export default class CurrentComponent extends React.Component
                     <div>
                         <HeaderComponent></HeaderComponent>
                         <div className = "currentCont">
-                        <NavLink to={"/post/"+this.props.match.params.username+"/"+this.props.match.params.tag}><h1 id="thoughtheading">{this.props.match.params.tag}</h1></NavLink>
+                        <h1 id="thoughtheading" onClick={() => {this.redirectToPost()}}>{this.props.match.params.tag}</h1>
                                 <div class="loader"></div>
                         </div>
                     </div>
@@ -54,7 +75,7 @@ export default class CurrentComponent extends React.Component
                     <div>
                         <HeaderComponent></HeaderComponent>
                         <div className = "currentCont">
-                        <NavLink to={"/post/"+this.props.match.params.username+"/"+this.props.match.params.tag}><h1 id="thoughtheading">{this.props.match.params.tag}</h1></NavLink>
+                        <h1 id="thoughtheading" onClick={() => {this.redirectToPost()}}>{this.props.match.params.tag}</h1>
                                 {this.printThoughts()}
                         </div>
                     </div>
