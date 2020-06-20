@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 import logo from '../Resources/images/logo_two.png';
 import '../styles/HeaderCompon.css';
-import { BrowserRouter, Route, NavLink, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class HeaderComponent extends React.Component{
     constructor()
@@ -10,50 +10,37 @@ class HeaderComponent extends React.Component{
 
         this.state = {
             user : 'Profile',
-            status : ' '
-        }
-    }
-    componentDidMount(){
-        if(this.props.match.params.username != undefined){
-            if(this.props.match.params.username != "undefined"){
-                this.setState({status: "Logout"})
-            }
-            else{
-                this.setState({status: "Login"})
-            }
-        }
-        else{
-            this.setState({status: "Login"})
+            status : 'Log in/out'
         }
     }
     redirectToTrending()
     {
-        this.props.history.push('/user/'+this.props.match.params.username)
+        this.props.history.push('/')
     }
     redirectToPost()
     {
-        if(this.props.match.params.username == undefined || this.props.match.params.username == "undefined"){
+        if(this.props.loginStatus == "null"){
                 this.props.history.push('/login')
         }
         else{
             if(this.props.match.params.tag == undefined || this.props.match.params.tag == "undefined")
-                this.props.history.push('/post/'+this.props.match.params.username+"/ ");
+                this.props.history.push('/post/ ');
             else
-                this.props.history.push('/post/'+this.props.match.params.username+"/"+this.props.match.params.tag);
+                this.props.history.push('/post/'+this.props.match.params.tag);
         }
     }
     redirectToProfile()
     {
-        if(this.props.match.params.username == undefined || this.props.match.params.username == "undefined"){
+        if(this.props.loginStatus == "null"){
                 this.props.history.push('/login')
         }
         else{
-            this.props.history.push('/profile/'+this.props.match.params.username)
+            this.props.history.push('/profile')
         }
     }
     redirectToLogin()
     {
-        this.props.history.push('/login')
+        this.props.history.push('/login');
     }
     openNav() {
         document.getElementById("mySidepanel").style.width = "300px";
@@ -77,7 +64,7 @@ class HeaderComponent extends React.Component{
                         <h3 id="nav-trend" className="trendmenu" onClick={() => {this.redirectToTrending()}}><i class="fas fa-hashtag"></i>Trending</h3>
                         <h3 id="nav-post" className="trendmenu" onClick={() => {this.redirectToPost()}}><i class="far fa-envelope"></i>Post</h3>
                         <h3 id="nav-user" className="trendmenu" onClick={() => {this.redirectToProfile()}}><i class="far fa-user-circle"></i>{this.state.user}</h3>
-                        <h3 id="nav-status" className="trendmenu" onClick={() => {this.redirectToLogin()}}><i class="fas fa-user-plus"></i>{this.state.status}</h3>
+                        <h3 id="nav-status" className="trendmenu" onClick={() => {this.redirectToLogin(); this.props.callBack("null");}}><i class="fas fa-user-plus"></i>{this.state.status}</h3>
                     </div>
                 </div>
             </div>

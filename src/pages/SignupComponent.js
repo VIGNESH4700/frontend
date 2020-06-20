@@ -4,8 +4,9 @@ import ButtonComponent from '../components/ButtonComponent';
 import InputComponent from '../components/InputComponent';
 import HeaderComponent from '../components/HeaderComponent';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom'
 
-export default class SignupComponent extends React.Component
+class SignupComponent extends React.Component
 {
     constructor()
     {
@@ -98,7 +99,6 @@ export default class SignupComponent extends React.Component
     {
         return(
             <div>
-                <HeaderComponent></HeaderComponent>
             <div>
                 <div class="signin-container">
                     <div class="box-cont">
@@ -128,3 +128,6 @@ export default class SignupComponent extends React.Component
         )
     }
 }
+
+
+export default withRouter(SignupComponent);

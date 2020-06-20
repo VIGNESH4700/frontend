@@ -14,20 +14,40 @@ class App extends React.Component {
   constructor()
   {
     super();
+    this.state = {
+      loggedUsername : "null"
+    }
   }
-  
+  componentWillMount(){
+    let userName = this.getSavedValue("userName");
+    this.setState({loggedUsername : userName});
+  }
+  saveValue(newname){
+      var id = "userName";  
+      var val = newname;  
+      localStorage.setItem(id, val);
+      let userName = this.getSavedValue("userName");
+      this.setState({loggedUsername : userName});
+  }
+
+  getSavedValue(value){
+      if (!localStorage.getItem(value)) {
+        return "";
+      }
+      return localStorage.getItem(value);
+  }
   render()
   {
     return (
       <BrowserRouter>
 
-        <Route exact path={"/"} component={TrendComponent} />
-        <Route exact path={"/user/:username"} component={TrendComponent} />
-        <Route exact path={"/login"} component={LoginComponent} />
-        <Route exact path={"/signup"} component={SignupComponent} />
-        <Route exact path={"/current/:username/:tag"} component={CurrentComponent} />
-        <Route exact path={"/post/:username/:tag"} component={PostComponent} />
-        <Route exact path={"/profile/:username"} component={ProfileComponent} />
+        <HeaderComponent loginStatus={this.state.loggedUsername} callBack={this.saveValue.bind(this)}></HeaderComponent>
+        <Route exact path={"/"} render={() => <TrendComponent loginStatus={this.state.loggedUsername}/>} />
+        <Route exact path={"/login"} render={() => <LoginComponent loginStatus={this.state.loggedUsername} callBack={this.saveValue.bind(this)}/>} />
+        <Route exact path={"/signup"} render={() => <SignupComponent loginStatus={this.state.loggedUsername}/>} />
+        <Route exact path={"/current/:tag"} render={() => <CurrentComponent loginStatus={this.state.loggedUsername} /> } />
+        <Route exact path={"/post/:tag"} render={() => <PostComponent loginStatus={this.state.loggedUsername} />} />
+        <Route exact path={"/profile"} render={() => <ProfileComponent loginStatus={this.state.loggedUsername} />} />
 
       </BrowserRouter>
      );

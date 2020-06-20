@@ -1,0 +1,60 @@
+*{
+    margin:0px;
+    padding:0px;
+    font-family: Bahnschrift;
+}
+#personal-time{
+    font-size: 10px;
+    font-weight: 100;
+}
+#personal-thought{
+    font-size: 10px;
+    font-weight: 100;
+    float: right;
+}
+#personalthoughts{
+    font-weight: 200;
+    cursor: pointer;
+    margin: auto;
+}
+.personalContainer{
+    width: 500px;
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgb(214, 212, 212);
+    margin-left: 20px;
+}
+#personalthoughts{
+    margin-top: 10px;
+}
+.arrow {
+    border: solid black;
+    border-width: 0 1px 1px 0;
+    display: inline-block;
+    padding: 3px;
+}
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    float: right;
+    cursor: pointer;
+}
+#removethought{
+    background-color:red;
+    border: none;
+    color: white;
+    padding: 3px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    float: right;
+}
+@media (max-width: 600px)
+{
+    .personalContainer{
+        width: 350px;
+        margin-left: 5px;
+    }
+}

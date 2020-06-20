@@ -4,8 +4,10 @@ import TrendpageComponent from '../components/TrendpageComponent';
 import '../styles/TrendCompon.css';
 import HeaderComponent from '../components/HeaderComponent';
 import '../styles/LoaderCompon.css';
+import coverimage from '../Resources/images/background_03.jpg';
+import { withRouter } from 'react-router-dom'
 
-export default class TrendComponent extends React.Component
+class TrendComponent extends React.Component
 {
     constructor()
     {
@@ -39,26 +41,33 @@ export default class TrendComponent extends React.Component
             if(this.state.isloading == '1')
             {
                 return(
-                    <div>
-                        <HeaderComponent></HeaderComponent>
-                        <div className = "trendCont">
-                                <h1 id="heading">What's Happening Now!</h1>
-                                <div class="loader"></div>
-                        </div>
+                    <div className = "HomeCont">
+                    <div className = "trendCont">
+                            <h1 className="heading">What's Happening Now!</h1>
+                            <div class="loader"></div>
                     </div>
+                    <div className = "coverCont">
+                        <img src={coverimage}
+                        alt="Cover Picture" id="cover-photo"/>
+                    </div>
+                </div>
                 )
             }
             else
             {   
                 return(
-                    <div>
-                        <HeaderComponent></HeaderComponent>
+                    <div className = "HomeCont">
                         <div className = "trendCont">
-                                <h1 id="heading">What's Happening Now!</h1>
+                                <h1 className="heading">What's Happening Now!</h1>
                                 {this.printTags()}
+                        </div>
+                        <div className = "coverCont">
+                            <img src={coverimage}
+                            alt="Cover Picture" id="cover-photo"/>
                         </div>
                     </div>
                 )
             }
     }
 }
+export default withRouter(TrendComponent);

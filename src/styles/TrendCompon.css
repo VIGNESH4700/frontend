@@ -6,7 +6,7 @@
 .currentCont, .trendCont{
     width: 500px;
 }
-#heading{
+.heading{
 	background: linear-gradient(to right, #30CFD0 0%, #1f11e6 100%);
     background-clip: text;
 	-webkit-text-fill-color: transparent;
@@ -26,12 +26,20 @@
 }
 @media (max-width: 600px)
 {
-    #heading, #thoughtheading{
+    .heading{
         font-size: 26px;
         text-align: center;
         margin-left: 0px;
     }
-    .currentCont, .trendCont{
-        width: auto;
+    #thoughtheading{
+        font-size: 26px;
+        text-align: center;
+        margin-left: auto;
+    }
+    .currentCont{
+        width:auto
+    }
+    .trendCont{
+        width: 600px;
     }
 }

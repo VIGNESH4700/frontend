@@ -5,7 +5,6 @@ import ButtonComponent from '../components/ButtonComponent';
 import InputComponent from '../components/InputComponent';
 import HeaderComponent from '../components/HeaderComponent';
 import axios from 'axios';
-import disableBrowserBackButton from 'disable-browser-back-navigation';
 
 class LoginComponent extends React.Component
 {
@@ -23,11 +22,7 @@ class LoginComponent extends React.Component
         }
     }
 
-    componentWillMount(){
-        disableBrowserBackButton();
-    }
     componentDidMount(){
-        disableBrowserBackButton();
         this.toggleForgot();
     }
 
@@ -68,8 +63,7 @@ class LoginComponent extends React.Component
             {
                 if(data.username==this.state.username){
                     if(data.password==this.state.password){
-                        let encrypted = window.btoa(this.state.username);
-                        this.props.history.replace("/user/"+window.btoa(encrypted));
+                        this.props.history.replace("/");
                         return;
                     }
                     else{
@@ -145,8 +139,6 @@ class LoginComponent extends React.Component
     {
         return(
             <div>
-                <HeaderComponent></HeaderComponent>
-            <div>
                 <div class="login-container">
                     <div class="box-cont">
                         <div class="inner-cont">
@@ -171,16 +163,14 @@ class LoginComponent extends React.Component
                                     <h4><input type="checkbox" onClick={() => this.togglePassCode()}/> show password</h4>
                                     <ButtonComponent type="button" value="Update" className="otp" onClick = {this.modifyPassword}></ButtonComponent>
                                 </div>
-                                <ButtonComponent type="button" value="Login" id="login" onClick = {this.redirectToHome}></ButtonComponent>                         
+                                <ButtonComponent type="button" value="Login" id="login" onClick = {() => {this.redirectToHome(); this.props.callBack(this.state.username);}}></ButtonComponent>                         
                             </form>
                         </div>
                     </div>
-                    
                     <div class="last-cont">
                         <h4 id="sign-up">Don't have an account? <NavLink to='/signup' id="newSignup">Sign up</NavLink></h4>
                     </div>
                 </div>
-            </div>
             </div>
         )
     }

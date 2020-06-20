@@ -1,13 +1,10 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import '../styles/ButtonCompon.css';
 class ButtonComponent extends React.Component{
     constructor()
     {
         super();
-    }
-    hello(){
-        alert("Hello!");
     }
     render(){
         return(

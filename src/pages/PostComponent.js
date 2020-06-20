@@ -4,8 +4,9 @@ import InputComponent from '../components/InputComponent';
 import ButtonComponent from '../components/ButtonComponent';
 import '../styles/PostCompon.css';
 import HeaderComponent from '../components/HeaderComponent';
+import { withRouter } from 'react-router-dom'
 
-export default class PostComponent extends React.Component
+class PostComponent extends React.Component
 {
     constructor()
     {
@@ -21,11 +22,7 @@ export default class PostComponent extends React.Component
         if(this.props.match.params.tag != ' '){
             this.setState({Tag:this.props.match.params.tag});
         }
-        try{
-            let username =  window.atob(window.atob(this.props.match.params.username));
-        }
-        catch(err){
-            alert("Some issues in your login please login again!");
+        if(this.props.loginStatus == "null"){
             this.props.history.push("/login");
         }
     }
@@ -44,20 +41,19 @@ export default class PostComponent extends React.Component
             'https://backendtrends.herokuapp.com/exercises/add',
             {   tag: this.state.Tag,
                 thought: this.state.Thought,
-                username: window.atob(window.atob(this.props.match.params.username)),
+                username: this.props.loginStatus,
                 time: time
             }, 
             { headers: { 'Content-Type': 'application/json' } }
           )
           .then(res => alert("Posted Redirected to Trending :)"))
-          .then(res => this.props.history.push("/user/"+this.props.match.params.username))
+          .then(res => this.props.history.push("/"))
           .catch(err => alert("Try again may be an error!"));
     }
     render()
     {
         return(
             <div>
-                <HeaderComponent></HeaderComponent>
                 <div>
                     <div  className="field-Container">                   
                         <InputComponent type="text" name="tag" placeholder="Tag" className="middle" value={this.state.Tag} onChange={(event) => this.updateTag(event.target.value)}/>
@@ -69,3 +65,6 @@ export default class PostComponent extends React.Component
         )
     }
 }
+
+
+export default withRouter(PostComponent);

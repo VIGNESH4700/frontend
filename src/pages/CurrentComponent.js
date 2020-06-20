@@ -3,8 +3,9 @@ import axios from 'axios';
 import CurrentCompon from '../components/CurrentComponent';
 import HeaderComponent from '../components/HeaderComponent';
 import '../styles/TrendCompon.css';
+import { withRouter } from 'react-router-dom';
 
-export default class CurrentComponent extends React.Component
+class CurrentComponent extends React.Component
 {
     constructor()
     {
@@ -35,14 +36,14 @@ export default class CurrentComponent extends React.Component
     }
     redirectToPost()
     {
-        if(this.props.match.params.username == undefined || this.props.match.params.username == "undefined"){
+        if(this.props.loginStatus == "null"){
                 this.props.history.push('/login')
         }
         else{
             if(this.props.match.params.tag == undefined || this.props.match.params.tag == "undefined")
-                this.props.history.push('/post/'+this.props.match.params.username+"/ ");
+                this.props.history.push('/post/ ');
             else
-                this.props.history.push('/post/'+this.props.match.params.username+"/"+this.props.match.params.tag);
+                this.props.history.push('/post/'+this.props.match.params.tag);
         }
     }
 
@@ -52,9 +53,8 @@ export default class CurrentComponent extends React.Component
             {
                 return(
                     <div>
-                        <HeaderComponent></HeaderComponent>
                         <div className = "currentCont">
-                        <h1 id="thoughtheading" onClick={() => {this.redirectToPost()}}>{this.props.match.params.tag}</h1>
+                                <h1 id="thoughtheading" onClick={() => {this.redirectToPost()}}>{this.props.match.params.tag}</h1>
                                 <div class="loader"></div>
                         </div>
                     </div>
@@ -64,9 +64,8 @@ export default class CurrentComponent extends React.Component
             {   
                 return(
                     <div>
-                        <HeaderComponent></HeaderComponent>
                         <div className = "currentCont">
-                        <h1 id="thoughtheading" onClick={() => {this.redirectToPost()}}>{this.props.match.params.tag}</h1>
+                                <h1 id="thoughtheading" onClick={() => {this.redirectToPost()}}>{this.props.match.params.tag}</h1>
                                 {this.printThoughts()}
                         </div>
                     </div>
@@ -74,3 +73,6 @@ export default class CurrentComponent extends React.Component
             }
     }
 }
+
+
+export default withRouter(CurrentComponent);

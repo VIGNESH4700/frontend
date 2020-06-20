@@ -6,10 +6,11 @@
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     max-width: 300px;
-    margin: auto;
     text-align: center;
     font-family: arial;
     margin-top: 100px;
+    margin-left: 100px;
+    margin-bottom: 50px;
   }
   #pro-photo{
     margin-top: 30px;
@@ -49,4 +50,10 @@
     color: rgb(85, 84, 81);
     font-weight: 100;
     font-family: Arial;
+}
+@media (max-width:600px)
+{
+  .card{
+    margin: 60px 0px 60px 30px;
+  }
 }

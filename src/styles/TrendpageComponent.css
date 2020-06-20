@@ -14,9 +14,17 @@
 }
 .TrendPageMain{
     width: 500px;
-    margin-left: 30px;
+    margin-left: 20px;
     border-bottom: 1px solid rgb(190, 185, 185);
     margin-bottom: 20px;
+}
+.HomeCont{
+    display: flex;
+    flex-direction: row;
+}
+#cover-photo{
+    width: 849.4px;
+    height: 800px;
 }
 @media (max-width: 600px)
 {
@@ -33,5 +41,8 @@
         width: 300px;
         margin-left: 30px;
         border-bottom: 1px solid rgb(236, 230, 230);
+    }
+    #cover-photo{
+        display: none;
     }
 }
