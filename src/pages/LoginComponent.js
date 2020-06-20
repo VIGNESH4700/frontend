@@ -63,6 +63,7 @@ class LoginComponent extends React.Component
             {
                 if(data.username==this.state.username){
                     if(data.password==this.state.password){
+                        this.props.callBack(this.state.username);
                         this.props.history.replace("/");
                         return;
                     }
@@ -163,7 +164,7 @@ class LoginComponent extends React.Component
                                     <h4><input type="checkbox" onClick={() => this.togglePassCode()}/> show password</h4>
                                     <ButtonComponent type="button" value="Update" className="otp" onClick = {this.modifyPassword}></ButtonComponent>
                                 </div>
-                                <ButtonComponent type="button" value="Login" id="login" onClick = {() => {this.redirectToHome(); this.props.callBack(this.state.username);}}></ButtonComponent>                         
+                                <ButtonComponent type="button" value="Login" id="login" onClick = {() => {this.redirectToHome()}}></ButtonComponent>                         
                             </form>
                         </div>
                     </div>

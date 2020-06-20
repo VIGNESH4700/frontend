@@ -20,7 +20,13 @@ class App extends React.Component {
   }
   componentWillMount(){
     let userName = this.getSavedValue("userName");
-    this.setState({loggedUsername : userName});
+    if(userName == ''){
+      alert("new device!");
+      this.setState({loggedUsername : "null"});
+    }
+    else{
+      this.setState({loggedUsername : userName});
+    }
   }
   saveValue(newname){
       var id = "userName";  
