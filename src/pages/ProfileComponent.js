@@ -75,7 +75,7 @@ class ProfileComponent extends React.Component
                     <h1 id="pro-email">{this.state.email}</h1>
                     <p className="pro-label">About</p>
                     <p id="pro-about">{this.state.about}</p>
-                    <button id="pro-edit">Edit</button>
+                    <button id="pro-edit">Profile</button>
                 </div>
                 {this.printThoughts()}
             </div>
