@@ -4,7 +4,7 @@ import TrendpageComponent from '../components/TrendpageComponent';
 import '../styles/TrendCompon.css';
 import HeaderComponent from '../components/HeaderComponent';
 import '../styles/LoaderCompon.css';
-import coverimage from '../Resources/images/background_03.jpg';
+import coverimage from '../Resources/images/background.jpg';
 import { withRouter } from 'react-router-dom'
 
 class TrendComponent extends React.Component
