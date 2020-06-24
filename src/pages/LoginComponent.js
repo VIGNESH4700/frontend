@@ -102,7 +102,7 @@ class LoginComponent extends React.Component
                 },
                 { headers: { 'Content-Type': 'application/json' } }
               ).then(y.style.display =  "none")
-               .catch(err => alert("Network error or Server error"))
+               .catch(err => alert("E-mail not found or Server error!"))
         }
         else{
             alert("passwords doesn't match");
